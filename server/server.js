@@ -7,10 +7,10 @@ var path = require('path')
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.use(express.static(__dirname + '/www'))
+app.use(express.static(path.join(__dirname, '../dist/week4')));
 
-app.post("/api/auth", function(req, res) {
-    let users = [{'username':'lachydriver','birthdate':'27/2/99','age':'27','email':'lachydriver@gmail.com','password':'password'}]
+app.post("/api/login", function(req, res) {
+    let users = [{'username':'lachydriver','birthdate':'27/2/99','age':'20','email':'lachydriver@gmail.com','password':'password'}]
     if (!req.body) {
       return res.sendStatus(400);
     }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,8 @@ export class LoginComponent implements OnInit {
   inputEmail: any;
   inputPassword: any;
   error: any;
-  users = [{email: 'lachydriver@gmail.com', password: 'password'}, {email: 'test@gmail.com', password: '123'}, {email: 'angular@gmail.com', password: 'awesome'}]
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private UsersService: UsersService) { 
 
   }
 
@@ -20,14 +20,16 @@ export class LoginComponent implements OnInit {
   }
 
   submitClicked(){
-    
-    for (var i=0; i < this.users.length; i++) {
-      if(this.inputEmail == this.users[i].email && this.inputPassword == this.users[i].password){
-        this.router.navigateByUrl('/account')
-      } else {
-        this.error = "Incorrect Username and Password"
-      }
-    }
+
+    this.UsersService.sendRequest(this.inputEmail, this.inputPassword)
+    console.log("HEY")
+    // for (var i=0; i < this.users.length; i++) {
+    //   if(this.inputEmail == this.users[i].email && this.inputPassword == this.users[i].password){
+    //     this.router.navigateByUrl('/account')
+    //   } else {
+    //     this.error = "Incorrect Username and Password"
+    //   }
+    // }
   }
 
 }
